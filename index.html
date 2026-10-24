@@ -367,6 +367,8 @@
       .mini-btn:hover{border-color:var(--violet)}
       .mini-btn.res{background:#eef4fd;border-color:#cfdefa;color:#2f5aa8}
       .mini-btn.mark{background:var(--grad);border-color:transparent;color:#fff}
+      .mini-btn.undo{background:#fff;border-color:var(--line);color:var(--ink-soft)}
+      .mini-btn.undo:hover{border-color:#c9cde0;color:var(--ink)}
       .mini-btn .chev{transition:transform .15s ease}
       .mini-btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
       .how-box{
@@ -912,17 +914,17 @@
           firstMission: "First Mission", completedCheck: "Completed ✓", inProgressSteps: "In progress · {a} / {b} steps",
           missionIntro: "Do each step in real life, then mark it as completed. Every step you finish earns <b>20 Civic XP</b> — no quiz, just doing.",
           verifyNote: "<b>Self-reported completion:</b> in this version, you check off your own steps. Civic XP is a Brooo achievement record — it is <b>not</b> an official license, permit, or certification. <b>Officially Verified</b> completion is a future feature.",
-          howToDo: "How to Do It", officialResource: "Official Resource", markCompleted: "Mark as Completed",
+          howToDo: "How to Do It", officialResource: "Official Resource", markCompleted: "Mark as Completed", undoCompleted: "Undo Completion",
           completedSR: "Completed · Self-reported", verifiedSoon: "Officially Verified · Coming Soon",
           completeMission: "Complete Mission", missionCompleteDone: "Mission Complete ✓",
           allDoneMsg: "All steps done — tap Complete Mission to stamp your passport!",
-          stepLabel: "Step {n}", markStepAria: "Mark step {n} as completed", howLabel: "How to do it:",
+          stepLabel: "Step {n}", markStepAria: "Mark step {n} as completed", unmarkStepAria: "Unmark step {n}", howLabel: "How to do it:",
           stepsCount: "{a} / {b} steps",
           resultTitle: "Mission Complete!",
           resultText: "You checked off all <b>{n} real-life steps</b> on {name}. Your passport just got a brand-new stamp — recorded as self-reported, the way you completed it.",
           resultXpVisit: "+{xp} Civic XP earned on this visit", resultXpNone: "All steps counted — great consistency!",
           levelUpLine: "Level up! You are now a {name}.", backToIslands: "Back to Islands", viewPassport: "View My Passport",
-          stepDoneToast: "Step done — +20 Civic XP!", stampedToast: "{name} stamped in your passport!",
+          stepDoneToast: "Step done — +20 Civic XP!", stepUndoneToast: "Step unmarked — −20 Civic XP", stampedToast: "{name} stamped in your passport!",
           myIslandsTab: "My Islands", stepRecordsTab: "Step Records ({a} / 30)", badgesTab: "Badges ({a} / {b})",
           stampedSR: "Stamped · Self-reported", selfReportedTag: "Self-reported",
           verifiedStampName: "Officially Verified", comingSoon: "Coming Soon",
@@ -1065,17 +1067,17 @@
           firstMission: "First Mission", completedCheck: "Completada ✓", inProgressSteps: "En curso · {a} / {b} pasos",
           missionIntro: "Haz cada paso en la vida real y luego márcalo como completado. Cada paso que terminas gana <b>20 Civic XP</b>: sin cuestionarios, solo hacer.",
           verifyNote: "<b>Finalización autodeclarada:</b> en esta versión, tú mismo marcas tus pasos. Civic XP es un registro de logros de Brooo: <b>no</b> es una licencia, permiso ni certificación oficial. La finalización <b>Officially Verified</b> es una función futura.",
-          howToDo: "Cómo hacerlo", officialResource: "Recurso oficial", markCompleted: "Marcar como completado",
+          howToDo: "Cómo hacerlo", officialResource: "Recurso oficial", markCompleted: "Marcar como completado", undoCompleted: "Deshacer finalización",
           completedSR: "Completado · Autodeclarado", verifiedSoon: "Officially Verified · Muy pronto",
           completeMission: "Completar misión", missionCompleteDone: "Misión completada ✓",
           allDoneMsg: "¡Todos los pasos hechos! Toca Completar misión para sellar tu pasaporte.",
-          stepLabel: "Paso {n}", markStepAria: "Marcar el paso {n} como completado", howLabel: "Cómo hacerlo:",
+          stepLabel: "Paso {n}", markStepAria: "Marcar el paso {n} como completado", unmarkStepAria: "Desmarcar el paso {n}", howLabel: "Cómo hacerlo:",
           stepsCount: "{a} / {b} pasos",
           resultTitle: "¡Misión completada!",
           resultText: "Marcaste los <b>{n} pasos reales</b> en {name}. Tu pasaporte tiene un sello nuevo, registrado como autodeclarado, tal como lo completaste.",
           resultXpVisit: "+{xp} Civic XP ganados en esta visita", resultXpNone: "Todos los pasos contados: ¡gran constancia!",
           levelUpLine: "¡Subiste de nivel! Ahora eres {name}.", backToIslands: "Volver a las islas", viewPassport: "Ver My Passport",
-          stepDoneToast: "Paso hecho: +20 Civic XP", stampedToast: "¡{name} sellada en tu pasaporte!",
+          stepDoneToast: "Paso hecho: +20 Civic XP", stepUndoneToast: "Paso desmarcado: −20 Civic XP", stampedToast: "¡{name} sellada en tu pasaporte!",
           myIslandsTab: "Mis islas", stepRecordsTab: "Registro de pasos ({a} / 30)", badgesTab: "Insignias ({a} / {b})",
           stampedSR: "Sellada · Autodeclarada", selfReportedTag: "Autodeclarado",
           verifiedStampName: "Officially Verified", comingSoon: "Muy pronto",
@@ -1218,17 +1220,17 @@
           firstMission: "First Mission", completedCheck: "已完成 ✓", inProgressSteps: "進行中 · {a} / {b} 步",
           missionIntro: "在真實生活中完成每個步驟，然後標記為已完成。每完成一步可獲得 <b>20 Civic XP</b> — 不是小測驗，是實際行動。",
           verifyNote: "<b>自述完成：</b>在這個版本中，步驟由你自己勾選確認。Civic XP 是 Brooo 的成就記錄，<b>不是</b>官方執照、許可或認證。<b>官方驗證</b>完成是未來的功能。",
-          howToDo: "怎麼做", officialResource: "官方資源", markCompleted: "標記為已完成",
+          howToDo: "怎麼做", officialResource: "官方資源", markCompleted: "標記為已完成", undoCompleted: "取消完成",
           completedSR: "已完成 · 自述", verifiedSoon: "官方驗證 · 即將推出",
           completeMission: "完成任務", missionCompleteDone: "任務完成 ✓",
           allDoneMsg: "所有步驟都完成了 — 點「完成任務」為你的護照蓋章！",
-          stepLabel: "步驟 {n}", markStepAria: "將步驟 {n} 標記為已完成", howLabel: "做法：",
+          stepLabel: "步驟 {n}", markStepAria: "將步驟 {n} 標記為已完成", unmarkStepAria: "取消步驟 {n} 的完成標記", howLabel: "做法：",
           stepsCount: "{a} / {b} 步",
           resultTitle: "任務完成！",
           resultText: "你在 {name} 勾選了全部 <b>{n} 個實際步驟</b>。你的護照多了一個新印章 — 以你完成它的方式，記錄為自述完成。",
           resultXpVisit: "本次獲得 +{xp} Civic XP", resultXpNone: "每個步驟都已計入 — 很有恆心！",
           levelUpLine: "升級了！你現在是{name}。", backToIslands: "回到島嶼", viewPassport: "查看 My Passport",
-          stepDoneToast: "步驟完成 — +20 Civic XP！", stampedToast: "{name} 已蓋章到你的護照！",
+          stepDoneToast: "步驟完成 — +20 Civic XP！", stepUndoneToast: "已取消完成 — −20 Civic XP", stampedToast: "{name} 已蓋章到你的護照！",
           myIslandsTab: "我的島嶼", stepRecordsTab: "步驟記錄（{a} / 30）", badgesTab: "徽章（{a} / {b}）",
           stampedSR: "已蓋章 · 自述", selfReportedTag: "自述完成",
           verifiedStampName: "官方驗證", comingSoon: "即將推出",
@@ -1371,17 +1373,17 @@
           firstMission: "First Mission", completedCheck: "已完成 ✓", inProgressSteps: "进行中 · {a} / {b} 步",
           missionIntro: "在真实生活中完成每个步骤，然后标记为已完成。每完成一步可获得 <b>20 Civic XP</b> — 不是小测验，是实际行动。",
           verifyNote: "<b>自述完成：</b>在这个版本中，步骤由你自己勾选确认。Civic XP 是 Brooo 的成就记录，<b>不是</b>官方执照、许可或认证。<b>官方验证</b>完成是未来的功能。",
-          howToDo: "怎么做", officialResource: "官方资源", markCompleted: "标记为已完成",
+          howToDo: "怎么做", officialResource: "官方资源", markCompleted: "标记为已完成", undoCompleted: "取消完成",
           completedSR: "已完成 · 自述", verifiedSoon: "官方验证 · 即将推出",
           completeMission: "完成任务", missionCompleteDone: "任务完成 ✓",
           allDoneMsg: "所有步骤都完成了 — 点“完成任务”为你的护照盖章！",
-          stepLabel: "步骤 {n}", markStepAria: "将步骤 {n} 标记为已完成", howLabel: "做法：",
+          stepLabel: "步骤 {n}", markStepAria: "将步骤 {n} 标记为已完成", unmarkStepAria: "取消步骤 {n} 的完成标记", howLabel: "做法：",
           stepsCount: "{a} / {b} 步",
           resultTitle: "任务完成！",
           resultText: "你在 {name} 勾选了全部 <b>{n} 个实际步骤</b>。你的护照多了一个新印章 — 以你完成它的方式，记录为自述完成。",
           resultXpVisit: "本次获得 +{xp} Civic XP", resultXpNone: "每个步骤都已计入 — 很有恒心！",
           levelUpLine: "升级了！你现在是{name}。", backToIslands: "回到岛屿", viewPassport: "查看 My Passport",
-          stepDoneToast: "步骤完成 — +20 Civic XP！", stampedToast: "{name} 已盖章到你的护照！",
+          stepDoneToast: "步骤完成 — +20 Civic XP！", stepUndoneToast: "已取消完成 — −20 Civic XP", stampedToast: "{name} 已盖章到你的护照！",
           myIslandsTab: "我的岛屿", stepRecordsTab: "步骤记录（{a} / 30）", badgesTab: "徽章（{a} / {b}）",
           stampedSR: "已盖章 · 自述", selfReportedTag: "自述完成",
           verifiedStampName: "官方验证", comingSoon: "即将推出",
@@ -1524,17 +1526,17 @@
           firstMission: "First Mission", completedCheck: "Đã hoàn thành ✓", inProgressSteps: "Đang làm · {a} / {b} bước",
           missionIntro: "Làm mỗi bước ngoài đời thực, rồi đánh dấu đã hoàn thành. Mỗi bước bạn làm xong kiếm <b>20 Civic XP</b> — không trắc nghiệm, chỉ hành động.",
           verifyNote: "<b>Hoàn thành tự xác nhận:</b> trong phiên bản này, bạn tự đánh dấu các bước của mình. Civic XP là hồ sơ thành tích của Brooo — <b>không</b> phải giấy phép hay chứng nhận chính thức. Hoàn thành <b>Officially Verified</b> là tính năng trong tương lai.",
-          howToDo: "Cách làm", officialResource: "Nguồn chính thức", markCompleted: "Đánh dấu đã hoàn thành",
+          howToDo: "Cách làm", officialResource: "Nguồn chính thức", markCompleted: "Đánh dấu đã hoàn thành", undoCompleted: "Hoàn tác hoàn thành",
           completedSR: "Đã hoàn thành · Tự xác nhận", verifiedSoon: "Officially Verified · Sắp ra mắt",
           completeMission: "Hoàn thành nhiệm vụ", missionCompleteDone: "Nhiệm vụ hoàn thành ✓",
           allDoneMsg: "Đã làm xong mọi bước — chạm Hoàn thành nhiệm vụ để đóng dấu hộ chiếu!",
-          stepLabel: "Bước {n}", markStepAria: "Đánh dấu bước {n} đã hoàn thành", howLabel: "Cách làm:",
+          stepLabel: "Bước {n}", markStepAria: "Đánh dấu bước {n} đã hoàn thành", unmarkStepAria: "Bỏ đánh dấu bước {n}", howLabel: "Cách làm:",
           stepsCount: "{a} / {b} bước",
           resultTitle: "Nhiệm vụ hoàn thành!",
           resultText: "Bạn đã đánh dấu tất cả <b>{n} bước thực tế</b> trên {name}. Hộ chiếu của bạn có thêm một dấu mới — được ghi là tự xác nhận, đúng như cách bạn đã hoàn thành.",
           resultXpVisit: "+{xp} Civic XP kiếm được trong lần này", resultXpNone: "Mọi bước đều đã được tính — rất kiên trì!",
           levelUpLine: "Lên cấp! Bạn giờ là {name}.", backToIslands: "Quay lại các đảo", viewPassport: "Xem My Passport",
-          stepDoneToast: "Bước hoàn thành — +20 Civic XP!", stampedToast: "{name} đã được đóng dấu vào hộ chiếu của bạn!",
+          stepDoneToast: "Bước hoàn thành — +20 Civic XP!", stepUndoneToast: "Đã bỏ đánh dấu bước — −20 Civic XP", stampedToast: "{name} đã được đóng dấu vào hộ chiếu của bạn!",
           myIslandsTab: "Đảo của tôi", stepRecordsTab: "Hồ sơ bước ({a} / 30)", badgesTab: "Huy hiệu ({a} / {b})",
           stampedSR: "Đã đóng dấu · Tự xác nhận", selfReportedTag: "Tự xác nhận",
           verifiedStampName: "Officially Verified", comingSoon: "Sắp ra mắt",
@@ -1677,17 +1679,17 @@
           firstMission: "First Mission", completedCheck: "Kumpleto ✓", inProgressSteps: "Isinasagawa · {a} / {b} hakbang",
           missionIntro: "Gawin ang bawat hakbang sa totoong buhay, pagkatapos ay markahan itong kumpleto. Bawat hakbang na matapos mo ay kumikita ng <b>20 Civic XP</b> — walang quiz, paggawa lang.",
           verifyNote: "<b>Pagkumpleto na iniulat ng sarili:</b> sa bersyong ito, ikaw mismo ang naglalagay ng tsek sa iyong mga hakbang. Ang Civic XP ay isang talaan ng tagumpay sa Brooo — <b>hindi</b> ito isang opisyal na lisensya, permit, o sertipikasyon. Ang pagkumpletong <b>Officially Verified</b> ay isang tampok sa hinaharap.",
-          howToDo: "Paano Gawin", officialResource: "Opisyal na Resource", markCompleted: "Markahan bilang Kumpleto",
+          howToDo: "Paano Gawin", officialResource: "Opisyal na Resource", markCompleted: "Markahan bilang Kumpleto", undoCompleted: "I-undo ang Pagkumpleto",
           completedSR: "Kumpleto · Iniulat ng sarili", verifiedSoon: "Officially Verified · Malapit Na",
           completeMission: "Kumpletuhin ang Misyon", missionCompleteDone: "Kumpleto ang Misyon ✓",
           allDoneMsg: "Tapos na ang lahat ng hakbang — i-tap ang Kumpletuhin ang Misyon para matatakan ang iyong pasaporte!",
-          stepLabel: "Hakbang {n}", markStepAria: "Markahan ang hakbang {n} bilang kumpleto", howLabel: "Paano ito gawin:",
+          stepLabel: "Hakbang {n}", markStepAria: "Markahan ang hakbang {n} bilang kumpleto", unmarkStepAria: "Alisin ang marka ng hakbang {n}", howLabel: "Paano ito gawin:",
           stepsCount: "{a} / {b} hakbang",
           resultTitle: "Kumpleto ang Misyon!",
           resultText: "Nilagyan mo ng tsek ang lahat ng <b>{n} tunay na hakbang</b> sa {name}. May bagong tatak ang iyong pasaporte — naitala bilang iniulat ng sarili, kung paano mo ito kinumpleto.",
           resultXpVisit: "+{xp} Civic XP na kinita sa pagbisitang ito", resultXpNone: "Nabilang na ang lahat ng hakbang — mahusay na pagtitiyaga!",
           levelUpLine: "Level up! Isa ka nang {name}.", backToIslands: "Bumalik sa mga Isla", viewPassport: "Tingnan ang My Passport",
-          stepDoneToast: "Tapos ang hakbang — +20 Civic XP!", stampedToast: "Natatakan ang {name} sa iyong pasaporte!",
+          stepDoneToast: "Tapos ang hakbang — +20 Civic XP!", stepUndoneToast: "Na-unmark ang hakbang — −20 Civic XP", stampedToast: "Natatakan ang {name} sa iyong pasaporte!",
           myIslandsTab: "Aking mga Isla", stepRecordsTab: "Mga Talaan ng Hakbang ({a} / 30)", badgesTab: "Mga Badge ({a} / {b})",
           stampedSR: "Natatakan · Iniulat ng sarili", selfReportedTag: "Iniulat ng sarili",
           verifiedStampName: "Officially Verified", comingSoon: "Malapit Na",
@@ -1830,17 +1832,17 @@
           firstMission: "First Mission", completedCheck: "완료 ✓", inProgressSteps: "진행 중 · 단계 {a} / {b}",
           missionIntro: "각 단계를 실제 생활에서 한 뒤, 완료로 표시하세요. 단계를 마칠 때마다 <b>20 Civic XP</b>를 얻습니다 — 퀴즈가 아니라, 행동입니다.",
           verifyNote: "<b>자기 보고 완료:</b> 이 버전에서는 본인이 직접 단계를 체크합니다. Civic XP는 Brooo의 성취 기록이며, 공식 면허, 허가, 인증이 <b>아닙니다</b>. <b>Officially Verified</b> 완료는 향후 기능입니다.",
-          howToDo: "방법 보기", officialResource: "공식 자료", markCompleted: "완료로 표시",
+          howToDo: "방법 보기", officialResource: "공식 자료", markCompleted: "완료로 표시", undoCompleted: "완료 취소",
           completedSR: "완료 · 자기 보고", verifiedSoon: "Officially Verified · 곧 출시",
           completeMission: "미션 완료하기", missionCompleteDone: "미션 완료 ✓",
           allDoneMsg: "모든 단계를 마쳤습니다 — 미션 완료하기를 눌러 여권에 도장을 찍으세요!",
-          stepLabel: "{n}단계", markStepAria: "{n}단계를 완료로 표시", howLabel: "방법:",
+          stepLabel: "{n}단계", markStepAria: "{n}단계를 완료로 표시", unmarkStepAria: "{n}단계 완료 표시 취소", howLabel: "방법:",
           stepsCount: "단계 {a} / {b}",
           resultTitle: "미션 완료!",
           resultText: "{name}에서 <b>실제 단계 {n}개</b>를 모두 체크했습니다. 여권에 새 도장이 찍혔습니다 — 완료한 그대로, 자기 보고로 기록되었습니다.",
           resultXpVisit: "이번에 +{xp} Civic XP 획득", resultXpNone: "모든 단계가 이미 반영되었습니다 — 꾸준함이 훌륭해요!",
           levelUpLine: "레벨 업! 이제 {name}입니다.", backToIslands: "섬으로 돌아가기", viewPassport: "My Passport 보기",
-          stepDoneToast: "단계 완료 — +20 Civic XP!", stampedToast: "{name}이(가) 여권에 도장 찍혔습니다!",
+          stepDoneToast: "단계 완료 — +20 Civic XP!", stepUndoneToast: "단계 완료 취소 — −20 Civic XP", stampedToast: "{name}이(가) 여권에 도장 찍혔습니다!",
           myIslandsTab: "내 섬", stepRecordsTab: "단계 기록 ({a} / 30)", badgesTab: "배지 ({a} / {b})",
           stampedSR: "도장 완료 · 자기 보고", selfReportedTag: "자기 보고",
           verifiedStampName: "Officially Verified", comingSoon: "곧 출시",
@@ -1983,17 +1985,17 @@
           firstMission: "First Mission", completedCheck: "اكتمل ✓", inProgressSteps: "قيد التنفيذ · {a} / {b} خطوات",
           missionIntro: "نفّذ كل خطوة في الحياة الواقعية، ثم ضع علامة الإكمال عليها. كل خطوة تنهيها تكسب <b>20 Civic XP</b> — بدون اختبارات، فقط تنفيذ.",
           verifyNote: "<b>الإكمال بالإبلاغ الذاتي:</b> في هذا الإصدار، أنت من يضع علامة على خطواتك. Civic XP هو سجل إنجاز في Brooo — وهو <b>ليس</b> رخصة أو تصريحًا أو شهادة رسمية. إكمال <b>Officially Verified</b> هو ميزة مستقبلية.",
-          howToDo: "كيفية التنفيذ", officialResource: "المصدر الرسمي", markCompleted: "وضع علامة الإكمال",
+          howToDo: "كيفية التنفيذ", officialResource: "المصدر الرسمي", markCompleted: "وضع علامة الإكمال", undoCompleted: "التراجع عن الإكمال",
           completedSR: "اكتمل · إبلاغ ذاتي", verifiedSoon: "Officially Verified · قريبًا",
           completeMission: "إكمال المهمة", missionCompleteDone: "اكتملت المهمة ✓",
           allDoneMsg: "أنجزت كل الخطوات — اضغط إكمال المهمة لختم جواز سفرك!",
-          stepLabel: "الخطوة {n}", markStepAria: "وضع علامة إكمال على الخطوة {n}", howLabel: "كيفية التنفيذ:",
+          stepLabel: "الخطوة {n}", markStepAria: "وضع علامة إكمال على الخطوة {n}", unmarkStepAria: "إلغاء علامة إكمال الخطوة {n}", howLabel: "كيفية التنفيذ:",
           stepsCount: "{a} / {b} خطوات",
           resultTitle: "اكتملت المهمة!",
           resultText: "وضعت علامة على كل <b>{n} خطوات حقيقية</b> في {name}. حصل جواز سفرك على ختم جديد — مُسجّل كإبلاغ ذاتي، بالطريقة التي أكملته بها.",
           resultXpVisit: "+{xp} Civic XP كسبتها في هذه الزيارة", resultXpNone: "تم احتساب كل الخطوات — مثابرة رائعة!",
           levelUpLine: "ارتقيت مستوى! أنت الآن {name}.", backToIslands: "العودة إلى الجزر", viewPassport: "عرض My Passport",
-          stepDoneToast: "اكتملت الخطوة — +20 Civic XP!", stampedToast: "تم ختم {name} في جواز سفرك!",
+          stepDoneToast: "اكتملت الخطوة — +20 Civic XP!", stepUndoneToast: "تم إلغاء إكمال الخطوة — −20 Civic XP", stampedToast: "تم ختم {name} في جواز سفرك!",
           myIslandsTab: "جُزري", stepRecordsTab: "سجل الخطوات ({a} / 30)", badgesTab: "الشارات ({a} / {b})",
           stampedSR: "تم الختم · إبلاغ ذاتي", selfReportedTag: "إبلاغ ذاتي",
           verifiedStampName: "Officially Verified", comingSoon: "قريبًا",
@@ -2136,17 +2138,17 @@
           firstMission: "First Mission", completedCheck: "Terminée ✓", inProgressSteps: "En cours · {a} / {b} étapes",
           missionIntro: "Fais chaque étape dans la vraie vie, puis marque-la comme terminée. Chaque étape finie rapporte <b>20 Civic XP</b> — pas de quiz, juste de l’action.",
           verifyNote: "<b>Achèvement autodéclaré :</b> dans cette version, tu coches toi-même tes étapes. Le Civic XP est un relevé de réussite Brooo — ce n’est <b>pas</b> un permis ou une certification officielle. L’achèvement <b>Officially Verified</b> est une fonctionnalité future.",
-          howToDo: "Comment faire", officialResource: "Ressource officielle", markCompleted: "Marquer comme terminé",
+          howToDo: "Comment faire", officialResource: "Ressource officielle", markCompleted: "Marquer comme terminé", undoCompleted: "Annuler l'achèvement",
           completedSR: "Terminé · Autodéclaré", verifiedSoon: "Officially Verified · Bientôt",
           completeMission: "Terminer la mission", missionCompleteDone: "Mission terminée ✓",
           allDoneMsg: "Toutes les étapes sont faites — touche Terminer la mission pour tamponner ton passeport !",
-          stepLabel: "Étape {n}", markStepAria: "Marquer l’étape {n} comme terminée", howLabel: "Comment faire :",
+          stepLabel: "Étape {n}", markStepAria: "Marquer l’étape {n} comme terminée", unmarkStepAria: "Retirer la marque de l’étape {n}", howLabel: "Comment faire :",
           stepsCount: "{a} / {b} étapes",
           resultTitle: "Mission terminée !",
           resultText: "Tu as coché les <b>{n} étapes réelles</b> sur {name}. Ton passeport a un nouveau tampon — enregistré comme autodéclaré, tel que tu l’as accompli.",
           resultXpVisit: "+{xp} Civic XP gagnés lors de cette visite", resultXpNone: "Toutes les étapes déjà comptées — belle constance !",
           levelUpLine: "Niveau supérieur ! Tu es maintenant {name}.", backToIslands: "Retour aux îles", viewPassport: "Voir My Passport",
-          stepDoneToast: "Étape terminée — +20 Civic XP !", stampedToast: "{name} tamponnée dans ton passeport !",
+          stepDoneToast: "Étape terminée — +20 Civic XP !", stepUndoneToast: "Étape décochée — −20 Civic XP !", stampedToast: "{name} tamponnée dans ton passeport !",
           myIslandsTab: "Mes îles", stepRecordsTab: "Relevé des étapes ({a} / 30)", badgesTab: "Badges ({a} / {b})",
           stampedSR: "Tamponnée · Autodéclarée", selfReportedTag: "Autodéclaré",
           verifiedStampName: "Officially Verified", comingSoon: "Bientôt",
@@ -2289,17 +2291,17 @@
           firstMission: "First Mission", completedCheck: "Завершено ✓", inProgressSteps: "В процессе · {a} / {b} шагов",
           missionIntro: "Выполните каждый шаг в реальной жизни, затем отметьте его завершённым. Каждый выполненный шаг даёт <b>20 Civic XP</b> — без тестов, только действие.",
           verifyNote: "<b>Завершение с самоподтверждением:</b> в этой версии вы сами отмечаете свои шаги. Civic XP — это запись достижений Brooo — это <b>не</b> официальная лицензия, разрешение или сертификация. Завершение <b>Officially Verified</b> — будущая функция.",
-          howToDo: "Как сделать", officialResource: "Официальный ресурс", markCompleted: "Отметить выполненным",
+          howToDo: "Как сделать", officialResource: "Официальный ресурс", markCompleted: "Отметить выполненным", undoCompleted: "Отменить выполнение",
           completedSR: "Завершено · Самоподтверждение", verifiedSoon: "Officially Verified · Скоро",
           completeMission: "Завершить миссию", missionCompleteDone: "Миссия завершена ✓",
           allDoneMsg: "Все шаги выполнены — нажмите «Завершить миссию», чтобы поставить печать в паспорт!",
-          stepLabel: "Шаг {n}", markStepAria: "Отметить шаг {n} выполненным", howLabel: "Как сделать:",
+          stepLabel: "Шаг {n}", markStepAria: "Отметить шаг {n} выполненным", unmarkStepAria: "Снять отметку о выполнении шага {n}", howLabel: "Как сделать:",
           stepsCount: "{a} / {b} шагов",
           resultTitle: "Миссия завершена!",
           resultText: "Вы отметили все <b>реальных шагов: {n}</b> на {name}. В вашем паспорте новая печать — записана как самоподтверждение, так, как вы это выполнили.",
           resultXpVisit: "+{xp} Civic XP заработано за этот визит", resultXpNone: "Все шаги уже учтены — отличное постоянство!",
           levelUpLine: "Новый уровень! Теперь вы — {name}.", backToIslands: "Назад к островам", viewPassport: "Смотреть My Passport",
-          stepDoneToast: "Шаг выполнен — +20 Civic XP!", stampedToast: "{name} отмечен печатью в вашем паспорте!",
+          stepDoneToast: "Шаг выполнен — +20 Civic XP!", stepUndoneToast: "Отметка шага снята — −20 Civic XP", stampedToast: "{name} отмечен печатью в вашем паспорте!",
           myIslandsTab: "Мои острова", stepRecordsTab: "Записи шагов ({a} / 30)", badgesTab: "Значки ({a} / {b})",
           stampedSR: "Печать · Самоподтверждение", selfReportedTag: "Самоподтверждение",
           verifiedStampName: "Officially Verified", comingSoon: "Скоро",
@@ -2961,14 +2963,16 @@
           var st = tx.steps[i];
           return '<div class="mstep' + (done ? " done" : "") + '">' +
             '<div class="mstep-top">' +
-            '<button type="button" class="check-btn" data-check="' + i + '"' + (done ? " disabled" : "") + ' aria-label="' + fmt(U().markStepAria, { n: i + 1 }) + '">' + (done ? icon("check", 15) : "") + "</button>" +
+            '<button type="button" class="check-btn" data-check="' + i + '" aria-pressed="' + done + '" aria-label="' + fmt(done ? U().unmarkStepAria : U().markStepAria, { n: i + 1 }) + '">' + (done ? icon("check", 15) : "") + "</button>" +
             '<div class="mstep-t"><b>' + fmt(U().stepLabel, { n: i + 1 }) + ": " + st.t + "</b><span>" + st.d + "</span></div>" +
             '<span class="xp-tag">' + (done ? "✓" : "+20 XP") + "</span></div>" +
             (done ? '<div class="mstep-status"><span class="sr-chip">' + icon("check", 12) + " " + U().completedSR + '</span><span class="ver-chip">' + U().verifiedSoon + "</span></div>" : "") +
             '<div class="mstep-actions">' +
             '<button type="button" class="mini-btn" data-how="' + i + '" aria-expanded="' + open + '">' + U().howToDo + " " + CHEV_ICON + "</button>" +
             '<a class="mini-btn res" href="' + s.url + '" target="_blank" rel="noopener">' + U().officialResource + " · " + s.org + " " + EXT_ICON + "</a>" +
-            (done ? "" : '<button type="button" class="mini-btn mark" data-mark="' + i + '">' + icon("check", 13) + " " + U().markCompleted + "</button>") +
+            (done
+              ? '<button type="button" class="mini-btn undo" data-unmark="' + i + '">' + icon("refresh", 13) + " " + U().undoCompleted + "</button>"
+              : '<button type="button" class="mini-btn mark" data-mark="' + i + '">' + icon("check", 13) + " " + U().markCompleted + "</button>") +
             "</div>" +
             '<div class="how-box" id="how-' + i + '"' + (open ? "" : " hidden") + "><b>" + U().howLabel + "</b> " + st.how + "</div>" +
             "</div>";
@@ -2982,9 +2986,9 @@
           '<div class="m-foot"><button class="btn btn-primary" type="button" id="mComplete"' + (allDone && !stamped ? "" : " disabled") + ">" +
           (stamped ? U().missionCompleteDone : U().completeMission) + "</button></div>" +
           (allDone && !stamped ? '<p style="text-align:center;font-weight:800;color:var(--violet-deep);margin:12px 0 0">' + U().allDoneMsg + "</p>" : "");
-        document.querySelectorAll("#stepList [data-check], #stepList [data-mark]").forEach(function (el) {
+        document.querySelectorAll("#stepList [data-check], #stepList [data-mark], #stepList [data-unmark]").forEach(function (el) {
           el.addEventListener("click", function () {
-            checkStep(parseInt(el.getAttribute("data-check") || el.getAttribute("data-mark"), 10));
+            toggleStep(parseInt(el.getAttribute("data-check") || el.getAttribute("data-mark") || el.getAttribute("data-unmark"), 10));
           });
         });
         document.querySelectorAll("#stepList [data-how]").forEach(function (el) {
@@ -2999,10 +3003,25 @@
         var comp = $("#mComplete");
         if (comp) comp.addEventListener("click", finishMission);
       }
-      function checkStep(i) {
+      function toggleStep(i) {
         var isl = mission.island;
         var checks = checksFor(isl.id);
-        if (checks[i]) return;
+        if (checks[i]) {
+          /* Un-marking a step hands its XP back. If this island was already
+             stamped, the stamp goes too — it only counts while every step
+             is checked. Level and badges are derived from xp / checks /
+             done, so they roll back with the re-render. */
+          checks[i] = false;
+          state.xp = Math.max(0, state.xp - XP_PER_STEP);
+          mission.gained = Math.max(0, mission.gained - XP_PER_STEP);
+          if (state.done[isl.id]) delete state.done[isl.id];
+          saveProgress();
+          renderChrome();
+          renderPassports();
+          renderMission();
+          toast(icon("refresh", 15) + " " + U().stepUndoneToast);
+          return;
+        }
         checks[i] = true;
         var before = levelOf(state.xp);
         state.xp += XP_PER_STEP;
