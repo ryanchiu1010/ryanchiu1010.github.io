@@ -158,6 +158,7 @@
         position:absolute;top:-8px;right:-6px;width:22px;height:22px;border-radius:50%;
         background:var(--green);color:#fff;display:grid;place-items:center;border:2px solid #fff;
       }
+      .pin .done-badge-bl{top:auto;bottom:-8px;right:auto;left:-6px}
       .map-col{display:flex;flex-direction:column;gap:10px;min-width:0}
       .map-toolbar{display:flex;justify-content:flex-end}
       .map-rail{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px}
@@ -241,6 +242,7 @@
       .tabs{display:flex;gap:20px;margin-top:20px;border-bottom:1.5px solid rgba(255,255,255,.25);position:relative;z-index:1}
       .tabs button{background:none;border:0;color:rgba(255,255,255,.75);font-weight:900;font-size:15px;padding:8px 2px}
       .tabs button.on{color:#fff;box-shadow:inset 0 -3px 0 #ffd76e}
+      .tabs button .tab-count{display:block;font-size:13px;opacity:.85}
       .stamp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;position:relative;z-index:1}
       .stamp{
         background:rgba(255,255,255,.13);border:1.5px dashed rgba(255,255,255,.4);border-radius:16px;
@@ -252,6 +254,7 @@
       }
       .stamp.locked{opacity:.55}
       .stamp.locked .ic{background:rgba(255,255,255,.25);color:#fff}
+      .stamp:not(.locked){background:rgba(255,215,110,.25);border:1.5px solid rgba(255,215,110,.6)}
       .badge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;position:relative;z-index:1}
       .badge{
         background:rgba(255,255,255,.13);border:1.5px solid rgba(255,255,255,.22);border-radius:16px;
@@ -260,6 +263,7 @@
       .badge .ic{width:44px;height:44px;margin:0 auto 6px;border-radius:50%;background:#ffd76e;color:#8a5b00;display:grid;place-items:center}
       .badge.locked{opacity:.5}
       .badge.locked .ic{background:rgba(255,255,255,.25);color:#fff}
+      .badge:not(.locked){background:rgba(255,215,110,.25);border-color:rgba(255,215,110,.6)}
       .badge small{display:block;font-weight:700;opacity:.8;font-size:11px;margin-top:2px}
 
       .rewards-card{
@@ -2786,7 +2790,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
             '<span class="dot" style="background:' + isl.color + '">' + icon(isl.id, 20) + "</span>" +
             '<span class="pt"><b>' + isl.name + "</b><span>" + IT(isl).tag + "</span></span>" +
             '<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>' +
-            (done ? '<span class="done-badge">' + icon("check", 12) + "</span>" : "");
+            (done ? '<span class="done-badge' + (isl.id === "civic" ? " done-badge-bl" : "") + '>' + icon("check", 12) + "</span>" : "");
           b.addEventListener("click", function () { openIsland(isl.id); });
           layer.appendChild(b);
         });
@@ -2864,6 +2868,8 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
 
       function passportHTML() {
         var li = levelOf(state.xp);
+        var RANK_ICONS = ["flag", "compass", "target", "shield", "trophy"];
+        var RANK_COLORS = ["#b9bdd4", "#7ec8a9", "#6c9fe8", "#b18cff", "#ffd76e"];
         var lvl = LEVELS[li];
         var next = LEVELS[li + 1];
         var pct, xpLine;
@@ -2906,18 +2912,19 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
             "<small>" + bt[1] + "</small></div>";
         }).join("");
         var tab = state.tab;
+        var tabLabel = function (s) { var i = Math.max(s.lastIndexOf("("), s.lastIndexOf("（")); if (i < 0) return s; return s.slice(0, i).replace(/\s+$/, "") + '<span class="tab-count">' + s.slice(i) + "</span>"; };
         return (
           '<h3><button type="button" class="pp-avatar-btn" data-avatar-open aria-label="' + U().avatarChange + '" title="' + U().avatarChange + '"><img class="pp-brooo" src="' + avatarSrc() + '" alt="" /></button><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h13a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5z"/><path d="M5 3v18"/><circle cx="12.5" cy="10" r="2.6"/><path d="M9 17c.7-1.7 2-2.5 3.5-2.5S15.3 15.3 16 17"/></svg> My First Passport</h3>' +
           '<div class="rank-row">' +
-          '<span class="rank-shield">' + icon("shield", 30) + "</span>" +
+          '<span class="rank-shield" style="color:' + RANK_COLORS[li] + '">' + icon(RANK_ICONS[li], 30) + "</span>" +
           "<div><b>" + L().levels[li] + "</b><span>" + fmt(U().levelWord, { n: li + 1 }) + " · " + fmt(U().islandsStamped, { a: doneCount(state) }) + "</span></div>" +
           '<div class="xp-big"><b>' + xpLine + "</b></div>" +
           "</div>" +
           '<div class="xpbar"><i style="width:' + pct + '%"></i></div>' +
           '<div class="tabs" role="tablist">' +
           '<button type="button" role="tab" data-tab="islands" class="' + (tab === "islands" ? "on" : "") + '">' + U().myIslandsTab + "</button>" +
-          '<button type="button" role="tab" data-tab="steps" class="' + (tab === "steps" ? "on" : "") + '">' + fmt(U().stepRecordsTab, { a: totalChecked(state) }) + "</button>" +
-          '<button type="button" role="tab" data-tab="badges" class="' + (tab === "badges" ? "on" : "") + '">' + fmt(U().badgesTab, { a: BADGES.filter(function (b) { return b.test(state); }).length, b: BADGES.length }) + "</button>" +
+          '<button type="button" role="tab" data-tab="steps" class="' + (tab === "steps" ? "on" : "") + '">' + tabLabel(fmt(U().stepRecordsTab, { a: totalChecked(state) })) + "</button>" +
+          '<button type="button" role="tab" data-tab="badges" class="' + (tab === "badges" ? "on" : "") + '">' + tabLabel(fmt(U().badgesTab, { a: BADGES.filter(function (b) { return b.test(state); }).length, b: BADGES.length })) + "</button>" +
           "</div>" +
           '<div class="stamp-grid" data-pane="islands" style="' + (tab === "islands" ? "" : "display:none") + '">' + stamps +
           '<div class="stamp locked"><span class="ic">' + icon("shield", 22) + "</span>" + U().verifiedStampName + "<small>" + U().comingSoon + "</small></div></div>" +
