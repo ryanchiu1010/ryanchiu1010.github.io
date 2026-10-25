@@ -339,7 +339,7 @@
       .mstep.done{border-color:var(--green);background:#f2fbf5}
       .mstep-top{display:flex;align-items:flex-start;gap:13px}
       .check-btn{
-        width:27px;height:27px;border-radius:8px;border:2.5px solid #c9cde0;flex:none;background:#fff;
+        width:32px;height:32px;border-radius:8px;border:2.5px solid #c9cde0;flex:none;background:#fff;
         display:grid;place-items:center;color:#fff;margin-top:1px;padding:0;
       }
       .check-btn:not([disabled]):hover{border-color:var(--violet)}
@@ -353,7 +353,7 @@
         border-radius:999px;padding:4px 10px;margin-top:2px;
       }
       .mstep.done .xp-tag{background:#e6f8ee;color:#1d8a52}
-      .mstep-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+      .mstep-actions{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:11px}
       .mini-btn{
         display:inline-flex;align-items:center;gap:6px;background:#f4f1fe;border:1.5px solid #ddd3fa;
         color:var(--violet-deep);font-weight:800;font-size:13px;border-radius:999px;padding:6px 12px;
@@ -3023,10 +3023,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
             (done ? '<div class="mstep-status"><span class="sr-chip">' + icon("check", 12) + " " + U().completedSR + '</span><span class="ver-chip">' + U().verifiedSoon + "</span></div>" : "") +
             '<div class="mstep-actions">' +
             '<button type="button" class="mini-btn" data-how="' + i + '" aria-expanded="' + open + '">' + U().howToDo + " " + CHEV_ICON + "</button>" +
-            '<a class="mini-btn res" href="' + s.url + '" target="_blank" rel="noopener">' + U().officialResource + " · " + s.org + " " + EXT_ICON + "</a>" +
-            (done
-              ? '<button type="button" class="mini-btn undo" data-unmark="' + i + '">' + icon("refresh", 13) + " " + U().undoCompleted + "</button>"
-              : '<button type="button" class="mini-btn mark" data-mark="' + i + '">' + icon("check", 13) + " " + U().markCompleted + "</button>") +
+            '<a class="mini-btn res" href="' + s.url + '" target="_blank" rel="noopener">' + U().officialResource + " · " + s.org + " " + EXT_ICON + "</a>"  +
             "</div>" +
             '<div class="how-box" id="how-' + i + '"' + (open ? "" : " hidden") + "><b>" + U().howLabel + "</b> " + st.how + "</div>" +
             "</div>";
