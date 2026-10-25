@@ -3078,7 +3078,6 @@
       $("#passportBtn").addEventListener("click", function () { openScrim("#passportScrim"); });
       $("#startExploring").addEventListener("click", function () {
         $("#mapShell").scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(function () { openIsland("drive"); }, 650);
       });
       $("#searchInput").addEventListener("input", function (e) {
         currentFilter = e.target.value.trim();
