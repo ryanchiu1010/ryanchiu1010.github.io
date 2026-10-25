@@ -229,7 +229,7 @@
       .passport-card h3{font-family:var(--font-display);margin:0 0 2px;font-size:21px;display:flex;align-items:center;gap:9px}
       .rank-row{display:flex;align-items:center;gap:15px;margin-top:16px;position:relative;z-index:1}
       .rank-shield{
-        width:62px;height:62px;flex:none;border-radius:18px;background:rgba(255,255,255,.16);
+        width:70px;height:70px;flex:none;border-radius:20px;background:rgba(255,255,255,.16);
         border:1.5px solid rgba(255,255,255,.35);display:grid;place-items:center;color:#ffd76e;
       }
       .rank-row b{font-family:var(--font-display);font-size:21px;display:block;line-height:1.1}
@@ -2868,7 +2868,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
       function passportHTML() {
         var li = levelOf(state.xp);
         var RANK_ICONS = ["flag", "compass", "target", "shield", "trophy"];
-        var RANK_COLORS = ["#b9bdd4", "#7ec8a9", "#6c9fe8", "#b18cff", "#ffd76e"];
+        var RANK_BG = ["#9aa0bd", "#4caf7d", "#5b8dd9", "#8b5cf6", "#ffb02e"];
         var lvl = LEVELS[li];
         var next = LEVELS[li + 1];
         var pct, xpLine;
@@ -2915,7 +2915,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
         return (
           '<h3><button type="button" class="pp-avatar-btn" data-avatar-open aria-label="' + U().avatarChange + '" title="' + U().avatarChange + '"><img class="pp-brooo" src="' + avatarSrc() + '" alt="" /></button><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h13a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5z"/><path d="M5 3v18"/><circle cx="12.5" cy="10" r="2.6"/><path d="M9 17c.7-1.7 2-2.5 3.5-2.5S15.3 15.3 16 17"/></svg> My First Passport</h3>' +
           '<div class="rank-row">' +
-          '<span class="rank-shield" style="color:' + RANK_COLORS[li] + '">' + icon(RANK_ICONS[li], 30) + "</span>" +
+          '<span class="rank-shield" style="background:' + RANK_BG[li] + ';color:#fff;border-color:' + RANK_BG[li] + ';box-shadow:0 10px 24px ' + RANK_BG[li] + '73">' + icon(RANK_ICONS[li], 38) + "</span>" +
           "<div><b>" + L().levels[li] + "</b><span>" + fmt(U().levelWord, { n: li + 1 }) + " · " + fmt(U().islandsStamped, { a: doneCount(state) }) + "</span></div>" +
           '<div class="xp-big"><b>' + xpLine + "</b></div>" +
           "</div>" +
