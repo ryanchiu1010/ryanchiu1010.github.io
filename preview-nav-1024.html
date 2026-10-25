@@ -424,7 +424,7 @@
       .meet-icon{width:188px;height:194px;object-fit:cover;border-radius:26%;border:2px solid rgba(255,255,255,.25);box-shadow:0 14px 30px rgba(0,0,0,.35)}
       .meet h3{font-family:var(--font-display);font-size:27px;margin:0 0 4px}
       .meet-sub{color:#cfc6ff;font-weight:800;margin:0 0 10px}
-      .meet-text{color:rgba(255,255,255,.88);font-weight:600;font-size:15.5px;line-height:1.55;margin:0;max-width:54ch}
+      .meet-text{color:rgba(255,255,255,.88);font-weight:600;font-size:15.5px;line-height:1.55;margin:0;max-width:54ch;white-space:pre-line}
       .meet-link{
         display:inline-flex;flex-direction:column;align-items:center;gap:2px;margin-top:16px;
         background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.45);color:#fff;
@@ -550,9 +550,9 @@
           color:var(--ink-soft);font-size:11px;font-weight:800;padding:6px 2px;
         }
         .tabbar button.active{color:var(--violet-deep)}
-        body{padding-bottom:76px}
+        body{padding-bottom:92px}
         .wrap{padding-left:28px;padding-right:28px}
-        .toast{bottom:88px;transform:translate(-50%,150px)}
+        .toast{bottom:104px;transform:translate(-50%,180px)}
       }
     </style>
   </head>
@@ -568,10 +568,7 @@
           <button type="button" data-nav="meet" data-i18n="navMeet">Meet Brooo</button>
         </nav>
         <div class="nav-right">
-          <label class="searchbox">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
-            <input id="searchInput" type="search" placeholder="Search for a service…" aria-label="Search islands and missions" data-i18n-ph="searchPh" />
-          </label>
+          
           <select class="lang-select" id="langSelect" aria-label="Language">
             <option value="en">English</option>
             <option value="es">Español</option>
@@ -702,7 +699,9 @@
             <div>
               <h3 data-i18n="meetTitle">Meet Brooo</h3>
               <p class="meet-sub" data-i18n="meetSub">The real Brooo — from our team's own app</p>
-              <p class="meet-text" data-i18n="meetText">In the Brooo app, Brooo is an AI companion for teens. When something seems off, it checks in first. When you need space, it stays quiet. Here in Brooo: Firsts, the very same Brooo is your guide across California Youth Civic Island, cheering you on as you finish each of life's firsts, one real step at a time.</p>
+              <p class="meet-text" data-i18n="meetText">In the Brooo app, Brooo is an AI companion for teens. When something seems off, it checks in first. When you need space, it stays quiet.
+
+Here in Brooo: Firsts, the very same Brooo is your guide across California Youth Civic Island, cheering you on as you finish each of life's firsts, one real step at a time.</p>
               <a class="meet-link" href="https://meterstone.studio" target="_blank" rel="noopener"><span class="visit-line" data-i18n="meetLinkVisit">Visit</span><span class="visit-name">Meterstone Studio <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4 10.5 13.5"/><path d="M20 14v5A1.5 1.5 0 0 1 18.5 20.5h-13A1.5 1.5 0 0 1 4 19V6a1.5 1.5 0 0 1 1.5-1.5H10"/></svg></span></a>
             </div>
             <figure class="meet-shot">
@@ -768,7 +767,7 @@
     </footer>
 
     <!-- ============ TAB NAVIGATION (mobile) ============ -->
-    <nav class="tabbar" aria-label="Sections">
+    <nav class="tabbar" aria-label="Sections"><button type="button" data-nav="home"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M5.5 10.5V20h13V10.5"/><path d="M9.5 20v-5.5h5V20"/></svg><span data-i18n="navHome">Home</span></button>
       <button type="button" data-nav="about">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 7.5h.01"/></svg>
         <span data-i18n="navAbout">About</span>
@@ -925,7 +924,7 @@
           eduLabel: "Education apps", eduText: "tell you what you should know.",
           broooText: "stays with you until you've actually done it — one real step at a time.",
           meetTitle: "Meet Brooo", meetSub: "The real Brooo — from our team's own app",
-          meetText: "In the Brooo app, Brooo is an AI companion for teens. When something seems off, it checks in first. When you need space, it stays quiet. Here in Brooo: Firsts, the very same Brooo is your guide across California Youth Civic Island, cheering you on as you finish each of life's firsts, one real step at a time.",
+          meetText: "In the Brooo app, Brooo is an AI companion for teens. When something seems off, it checks in first. When you need space, it stays quiet.\n\nHere in Brooo: Firsts, the very same Brooo is your guide across California Youth Civic Island, cheering you on as you finish each of life's firsts, one real step at a time.",
           meetCap: "Brooo in The Lagoon — from the Brooo app",
           meetLink: "Visit Meterstone Studio",
           meetLinkVisit: "Visit",
@@ -3130,13 +3129,7 @@
         setView("home");
         $("#mapShell").scrollIntoView({ behavior: "smooth", block: "center" });
       });
-      $("#searchInput").addEventListener("input", function (e) {
-        currentFilter = e.target.value.trim();
-        if (currentFilter) setMapMode(true);
-        renderList(currentFilter);
-        renderMissions(currentFilter);
-        if (currentFilter && (activeView === "about" || activeView === "meet" || activeView === "passport")) setView("home");
-      });
+      
       document.querySelectorAll("[data-close]").forEach(function (el) {
         el.addEventListener("click", function () { closeScrim(el.closest(".scrim")); });
       });
