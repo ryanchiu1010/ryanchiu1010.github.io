@@ -2458,7 +2458,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
       var ISLANDS = [
         {
           id: "civic", name: "Civic Island", color: "#6c5ce7",
-          x: 50, y: 43,
+          x: 50.5, y: 24.8,
           keywords: "vote voting register election civic mayor council jury government",
           steps: [
             { org: "CA Secretary of State", url: "https://voterstatus.sos.ca.gov/" },
@@ -2471,7 +2471,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
         },
         {
           id: "drive", name: "Drive Island", color: "#4f83e8",
-          x: 17, y: 28,
+          x: 18, y: 29.2,
           keywords: "drive driver license dmv car permit test road",
           steps: [
             { org: "California DMV", url: "https://www.dmv.ca.gov/portal/handbook/california-driver-handbook/" },
@@ -2484,7 +2484,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
         },
         {
           id: "learn", name: "Learn Island", color: "#9666e8",
-          x: 80, y: 26,
+          x: 85, y: 21.3,
           keywords: "learn school education study library fafsa gpa college class",
           steps: [
             { org: "CA Dept. of Education", url: "https://www.cde.ca.gov/" },
@@ -2497,7 +2497,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
         },
         {
           id: "future", name: "Future Island", color: "#7a5af8",
-          x: 81, y: 70,
+          x: 80, y: 65.5,
           keywords: "job work career resume interview paycheck money future employ",
           steps: [
             { org: "CA Dept. of Education", url: "https://www.cde.ca.gov/ci/ct/pk/workpermits.asp" },
@@ -2510,7 +2510,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
         },
         {
           id: "care", name: "Care Island", color: "#f2607e",
-          x: 16, y: 62,
+          x: 17, y: 59.9,
           keywords: "care health help doctor hospital emergency insurance wellness 911 988",
           steps: [
             { org: "988 Lifeline", url: "https://988lifeline.org/" },
@@ -2868,7 +2868,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
       function passportHTML() {
         var li = levelOf(state.xp);
         var RANK_ICONS = ["flag", "compass", "target", "shield", "trophy"];
-        var RANK_BG = ["#9aa0bd", "#4caf7d", "#5b8dd9", "#8b5cf6", "#ffb02e"];
+        var RANK_COLORS = ["#9aa0bd", "#4caf7d", "#5b8dd9", "#8b5cf6", "#ffb02e"];
         var lvl = LEVELS[li];
         var next = LEVELS[li + 1];
         var pct, xpLine;
@@ -2915,7 +2915,7 @@ Here in Brooo: Firsts, the very same Brooo is your guide across California Youth
         return (
           '<h3><button type="button" class="pp-avatar-btn" data-avatar-open aria-label="' + U().avatarChange + '" title="' + U().avatarChange + '"><img class="pp-brooo" src="' + avatarSrc() + '" alt="" /></button><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h13a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5z"/><path d="M5 3v18"/><circle cx="12.5" cy="10" r="2.6"/><path d="M9 17c.7-1.7 2-2.5 3.5-2.5S15.3 15.3 16 17"/></svg> My First Passport</h3>' +
           '<div class="rank-row">' +
-          '<span class="rank-shield" style="background:' + RANK_BG[li] + ';color:#fff;border-color:' + RANK_BG[li] + ';box-shadow:0 10px 24px ' + RANK_BG[li] + '73">' + icon(RANK_ICONS[li], 38) + "</span>" +
+          '<span class="rank-shield" style="background:#fff;color:' + RANK_COLORS[li] + ';border-color:' + RANK_COLORS[li] + ';box-shadow:0 10px 24px ' + RANK_COLORS[li] + '73">' + icon(RANK_ICONS[li], 38) + "</span>" +
           "<div><b>" + L().levels[li] + "</b><span>" + fmt(U().levelWord, { n: li + 1 }) + " · " + fmt(U().islandsStamped, { a: doneCount(state) }) + "</span></div>" +
           '<div class="xp-big"><b>' + xpLine + "</b></div>" +
           "</div>" +
